@@ -22,7 +22,7 @@ const Login = () => {
     const email = enteredEmail.trim();
     const password = enteredPassword.trim();
     try {
-      const activationURL = `http://localhost:8080/login/${email}/${password}`;
+      const activationURL = `https://iztechelection.herokuapp.com/login/${email}/${password}`;
       const res = await axios.get(activationURL)
         .then((response) => {
           console.log(response.data);
