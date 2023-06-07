@@ -1,0 +1,23 @@
+.container {
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+  }
+  
+  li::before {
+    content: "•";
+    margin-right: 5px;
+  }
+  
+  .percentage {
+    font-weight: bold;
+  }
+  

@@ -1,0 +1,42 @@
+.set-election-date-container {
+  margin-top: 48px;
+}
+
+.date-time-boxes {
+  display: flex;
+  gap: 36px;
+}
+
+.date-time-box label {
+  font-weight: bold;
+}
+
+.set-election-date-button {
+  width: 84px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background-color: #9a0e20;
+  color: #fff;
+}
+
+.set-election-date-button:hover,
+.set-election-date-button:active {
+  background-color: rgb(140, 0, 18);
+  cursor: pointer;
+}
+
+.end-election-date-button {
+  width: 84px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background-color: #9a0e20;
+  color: #fff;
+}
+
+.end-election-date-button:hover,
+.end-election-date-button:active {
+  background-color: rgb(140, 0, 18);
+  cursor: pointer;
+}

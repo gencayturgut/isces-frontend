@@ -1,0 +1,88 @@
+/* COLOR : #9a0e20 */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.page-layout-container {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  column-gap: 48px;
+}
+
+.sidebar-container {
+  position: sticky;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 17vw;
+  height: 100vh;
+}
+
+.sidebar-layout {
+  background-color: #f1f3f5;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  height: 100%;
+}
+
+.sidebar-logo-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar-logo {
+  width: 120px;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+}
+
+.option {
+  height: 48px;
+  text-decoration: none;
+  background-color: inherit;
+
+  display: flex;
+  align-items: center;
+}
+
+.option:link,
+.option:visited {
+  color: #495057;
+}
+
+.option:hover,
+.option:active {
+  border-right: 2px solid #9a0e20;
+  color: #9a0e20;
+  background-color: rgba(154, 14, 32, 0.05);
+  transition: 0.3s all;
+}
+
+.option div {
+  display: grid;
+  grid-template-columns: 1fr 1fr 3fr;
+  width: 100%;
+}
+
+.option ion-icon {
+  grid-column: 2 / 3;
+  justify-self: flex-start;
+  align-self: center;
+}
+
+.option button {
+  grid-column: 3 / 4;
+  color: inherit;
+  justify-self: flex-start;
+  align-self: center;
+  border: none;
+  cursor: pointer;
+  background-color: inherit;
+}

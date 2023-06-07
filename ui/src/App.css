@@ -1,0 +1,10 @@
+.app-container {
+  background-color: #fff;
+}
+
+.content-container {
+  display: flex;
+  justify-content: space-between;
+  width: 800px;
+  margin-top: 20px;
+}

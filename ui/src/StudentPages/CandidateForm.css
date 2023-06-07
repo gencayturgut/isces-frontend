@@ -1,0 +1,48 @@
+.be-candidate-container {
+  margin-top: 48px;
+}
+
+.be-candidate-form {
+  display: grid;
+}
+
+.motivation-label span {
+  color: #9a0e20;
+  font-weight: bold;
+}
+
+.motivation-label input {
+  width: 360px;
+  border: 2px solid #9a0e20;
+}
+
+.transcript-input {
+  display: inline;
+}
+
+.criminal-record-label {
+  display: inline;
+}
+
+.be-candidate-button {
+  margin-top: 24px;
+  border: none;
+  color: #fff;
+  background-color: #9a0e20;
+  width: 120px;
+  height: 48px;
+  border-radius: 24px;
+}
+
+.be-candidate-button:hover {
+  background-color: rgb(140, 0, 18);
+  cursor: pointer;
+}
+
+.success-message {
+  color: green;
+}
+
+.error-message {
+  color: red;
+}
