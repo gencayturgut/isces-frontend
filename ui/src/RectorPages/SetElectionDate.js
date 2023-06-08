@@ -74,6 +74,7 @@ const SetElectionDate = () => {
       let endDateConverted = new Date(
         enteredEndDate.getTime() + 3 * 60 * 60 * 1000
       );
+      console.log("DATE E GİRİYOR")
       electionFetch(startDateConverted.toISOString(), endDateConverted.toISOString());
     } else {
       changeAlertBoxVisible();
