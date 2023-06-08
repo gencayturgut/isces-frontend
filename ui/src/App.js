@@ -16,7 +16,9 @@ import axios from "axios";
 function App() {
   const url = "https://iztechelectionfrontend.herokuapp.com/isInElectionProcess";
   const authCtx = useContext(AuthContext);
- 
+  useEffect(() => {
+    checkElectionIsOn();
+  }, []);
   const checkElectionIsOn = async () => {
     try {
       const response = await axios.get(

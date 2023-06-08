@@ -35,7 +35,7 @@ function Election() {
 
   useEffect(() => {
     fetchTiedCandidates();
-  });
+  }, []);
 
   const fetchTiedCandidates = async () => {
     try {
