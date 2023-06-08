@@ -51,7 +51,7 @@ const SetElectionDate = () => {
   };
   async function electionFetch(startDate, endDate) {
     try {
-      const url = `http://localhost:8080/enterElectionDate/${startDate}/${endDate}`;
+      const url = `https://iztechelectionfrontend.herokuapp.com//enterElectionDate/${startDate}/${endDate}`;
       console.log(startDate);
       const response = await axios.get(url);
     } catch (error) {
@@ -132,7 +132,7 @@ const SetElectionDate = () => {
   }, []);
   async function finishElection() {
     try {
-      const response = await axios.get(`http://localhost:8080/finishElection`);
+      const response = await axios.get(`https://iztechelectionfrontend.herokuapp.com//finishElection`);
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -140,7 +140,7 @@ const SetElectionDate = () => {
   }
   const getElectionDetails = async () => {
     try {
-      const response = await axios.get(`http://localhost:8080/electionDate`);
+      const response = await axios.get(`https://iztechelectionfrontend.herokuapp.com//electionDate`);
       const startDate = new Date(response.data.startDate);
       const endDate = new Date(response.data.endDate);
       const currentDate = new Date();

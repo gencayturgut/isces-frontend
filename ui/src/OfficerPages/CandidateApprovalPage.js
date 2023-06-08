@@ -8,7 +8,7 @@ const CandidateApprovalPage = () => {
   const [unEvalCandidates, setUnEvalCandidates] = useState([]);
   const [isElectionOn, setIsElectionOn] = useState(false);
   const [isCandidacyOn, setIsCandidacyOn] = useState(false);
-  const url = `http://localhost:8080/unevaluatedStudents/${authCtx.userDepartment}`;
+  const url = `https://iztechelectionfrontend.herokuapp.com//unevaluatedStudents/${authCtx.userDepartment}`;
   let returned = <h1>Candidacy period has ended!</h1>;
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const CandidateApprovalPage = () => {
   const checkElectionIsOn = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/isInElectionProcess`
+        `https://iztechelectionfrontend.herokuapp.com//isInElectionProcess`
       );
 
 
@@ -36,7 +36,7 @@ const CandidateApprovalPage = () => {
   const checkCandidacyPeriod = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/isInCandidacyProcess`
+        `https://iztechelectionfrontend.herokuapp.com//isInCandidacyProcess`
       );
 
 
@@ -71,7 +71,7 @@ const CandidateApprovalPage = () => {
     );
     setUnEvalCandidates(updatedCandidates);
 
-    const urlForUpdate = `http://localhost:8080/confirmStudent/${studentNumber}`;
+    const urlForUpdate = `https://iztechelectionfrontend.herokuapp.com//confirmStudent/${studentNumber}`;
     updateCandidates(urlForUpdate);
   };
 
@@ -81,14 +81,14 @@ const CandidateApprovalPage = () => {
     );
     setUnEvalCandidates(updatedCandidates);
 
-    const urlForUpdate = `http://localhost:8080/rejectStudent/${studentNumber}`;
+    const urlForUpdate = `https://iztechelectionfrontend.herokuapp.com//rejectStudent/${studentNumber}`;
     updateCandidates(urlForUpdate);
   };
   
   const downloadCandidateFiles = async (studentNumber) => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/downloadStudentFiles/${studentNumber}`,
+        `https://iztechelectionfrontend.herokuapp.com//downloadStudentFiles/${studentNumber}`,
         {
           responseType: 'blob' // Set the response type to 'blob'
         }
