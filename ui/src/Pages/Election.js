@@ -20,7 +20,7 @@ function Election() {
   const checkElectionIsOn = async () => {
     try {
       const response = await axios.get(
-        "https://iztechelectionfrontend.herokuapp.com//isInElectionProcess"
+        "https://iztechelectionfrontend.herokuapp.com/isInElectionProcess"
       );
       setElectionIsOn(response.data);
     } catch (error) {
@@ -39,7 +39,7 @@ function Election() {
 
   const fetchTiedCandidates = async () => {
     try {
-      const response = await axios.get("https://iztechelectionfrontend.herokuapp.com//tiedDelegates");
+      const response = await axios.get("https://iztechelectionfrontend.herokuapp.com/tiedDelegates");
       setTiedDelegates(response.data);
     } catch (error) {
       console.log(error.message);
@@ -47,7 +47,7 @@ function Election() {
   };
   const fetchCandidateInfo = async () => {
     try {
-      let url = `https://iztechelectionfrontend.herokuapp.com//candidates/allPreviousElectionCandidates/${selectedDepartment}`;
+      let url = `https://iztechelectionfrontend.herokuapp.com/candidates/allPreviousElectionCandidates/${selectedDepartment}`;
       const response = await axios.get(url);
 
       const transformedCandidates = [
@@ -128,7 +128,7 @@ function Election() {
       // Send the selectedCandidateId to the backend using your preferred method (e.g., API call)
   
       try {
-        const url = `https://iztechelectionfrontend.herokuapp.com//concludeTie/${selectedCandidateId}`;
+        const url = `https://iztechelectionfrontend.herokuapp.com/concludeTie/${selectedCandidateId}`;
         const res = await axios.get(url);
       } catch (error) {
         console.log(error.message);
