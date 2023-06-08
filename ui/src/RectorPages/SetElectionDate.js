@@ -66,8 +66,7 @@ const SetElectionDate = () => {
     }
     return false;
   }
-  const handleSubmit = (e) => {
-    localStorage.setItem("isDateSet", true);
+  const handleSubmit = async (e) => {
     if (isInputValid(enteredStartDate, enteredEndDate)) {
       let startDateConverted = new Date(
         enteredStartDate.getTime() + 3 * 60 * 60 * 1000
