@@ -20,7 +20,7 @@ export default function CandidateForm() {
       formData.append("criminalRecord", candidateData.criminalRecord);*/
 
       /*const response = await axios.post(
-        `http://localhost:8080/uploadFolder`,
+        `https://iztechelectionfrontend.herokuapp.com//uploadFolder`,
         formData,
         {
           headers: {
@@ -28,7 +28,7 @@ export default function CandidateForm() {
           },
         }
       );*/
-      await axios.get(`http://localhost:8080/applyToBeCandidate/${localStorage.getItem("uid")}`);
+      await axios.get(`https://iztechelectionfrontend.herokuapp.com//applyToBeCandidate/${localStorage.getItem("uid")}`);
     } catch (error) {
       console.error(error);
     }

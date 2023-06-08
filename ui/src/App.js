@@ -14,7 +14,7 @@ import Profile from "./Pages/Profile";
 import CandidateApprovalPage from "./OfficerPages/CandidateApprovalPage";
 import axios from "axios";
 function App() {
-  const url = "http://localhost:8080/isInElectionProcess";
+  const url = "https://iztechelectionfrontend.herokuapp.com//isInElectionProcess";
   const authCtx = useContext(AuthContext);
   useEffect(() => {
     checkElectionIsOn();
@@ -22,7 +22,7 @@ function App() {
   const checkElectionIsOn = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:8080/isInElectionProcess`
+        `https://iztechelectionfrontend.herokuapp.com//isInElectionProcess`
       );
 
     } catch (error) {
