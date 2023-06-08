@@ -18,17 +18,17 @@ export default function Candidates() {
     authCtx.userRole === "candidate" ||
     authCtx.userRole === "officer"
   ) {
-    url = `https://iztechelectionfrontend.herokuapp.com//candidates/allCandidates/${authCtx.userDepartment}`;
+    url = `http://localhost:8080/candidates/allCandidates/${authCtx.userDepartment}`;
   } else {
-    url = `https://iztechelectionfrontend.herokuapp.com//candidates/allCandidates`;
+    url = `http://localhost:8080/candidates/allCandidates`;
   }
   const studentNum = localStorage.getItem("uid");
-  const getStudentUrl = `https://iztechelectionfrontend.herokuapp.com//getStudent/${studentNum}`;
+  const getStudentUrl = `http://localhost:8080/getStudent/${studentNum}`;
 
   const checkElectionIsOn = async () => {
     try {
       const response = await axios.get(
-        `https://iztechelectionfrontend.herokuapp.com//isInElectionProcess`
+        `http://localhost:8080/isInElectionProcess`
       );
       setElectionIsOn(response.data);
     } catch (error) {
@@ -68,7 +68,7 @@ export default function Candidates() {
   const voteHandler = async (id) => {
     try {
       const response = await axios.get(
-        `https://iztechelectionfrontend.herokuapp.com//vote/${studentNum}/${id}`
+        `http://localhost:8080/vote/${studentNum}/${id}`
       );
       if (response.status === 200) {
         setShowSentVoteInfo(true);

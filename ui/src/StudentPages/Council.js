@@ -4,7 +4,7 @@ import axios from "axios";
 
 export default function Council() {
   const [delegates, setDelegates] = useState([]);
-  const url = "https://iztechelectionfrontend.herokuapp.com//allDelegates";
+  const url = "http://localhost:8080/allDelegates";
 
   const fetchDelegates = async () => {
     try {
