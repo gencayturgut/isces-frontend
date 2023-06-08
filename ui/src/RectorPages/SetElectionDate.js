@@ -75,8 +75,6 @@ const SetElectionDate = () => {
       let endDateConverted = new Date(
         enteredEndDate.getTime() + 3 * 60 * 60 * 1000
       );
-      startDateConverted = startDateConverted.toISOString().substring(0, 19);
-      endDateConverted = endDateConverted.toISOString().substring(0, 19);
       electionFetch(startDateConverted, endDateConverted);
     } else {
       changeAlertBoxVisible();
