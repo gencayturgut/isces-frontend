@@ -30,7 +30,7 @@ export default function Council() {
               <div className="council-member-photo"></div>
               <div className="council-member-info">
                 <div className="council-member-name">
-                  {delegate.candidate.student.firstName}
+                  {delegate.candidate.student.firstName}{" "}
                   {delegate.candidate.student.lastName}
                 </div>
                 <div className="council-member-department">
