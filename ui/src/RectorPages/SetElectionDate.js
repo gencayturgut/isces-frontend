@@ -66,23 +66,20 @@ const SetElectionDate = () => {
     }
     return false;
   }
- const handleSubmit = (e) => {
-  e.preventDefault();
-  localStorage.setItem("isDateSet", true);
-  if (isInputValid(enteredStartDate, enteredEndDate)) {
-    let startDateConverted = new Date(
-      enteredStartDate.getTime() + 3 * 60 * 60 * 1000
-    );
-    let endDateConverted = new Date(
-      enteredEndDate.getTime() + 3 * 60 * 60 * 1000
-    );
-    electionFetch(startDateConverted.toISOString(), endDateConverted.toISOString());
-  } else {
-    changeAlertBoxVisible();
-  }
-};
-
-  
+  const handleSubmit = (e) => {
+    localStorage.setItem("isDateSet", true);
+    if (isInputValid(enteredStartDate, enteredEndDate)) {
+      let startDateConverted = new Date(
+        enteredStartDate.getTime() + 3 * 60 * 60 * 1000
+      );
+      let endDateConverted = new Date(
+        enteredEndDate.getTime() + 3 * 60 * 60 * 1000
+      );
+      electionFetch(startDateConverted, endDateConverted);
+    } else {
+      changeAlertBoxVisible();
+    }
+  };
 
   const setElectionForm = (
     <div className="set-election-date-container">
