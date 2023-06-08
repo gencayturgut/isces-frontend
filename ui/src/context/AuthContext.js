@@ -55,6 +55,7 @@ export const AuthContextProvider = (props) => {
     localStorage.setItem("isLoggedIn", "1");
     
     const role = localStorage.getItem("userRole");
+    console.log("asdfmsjgvkısfdkbgdfkobl")
     if (role == "rector") {
       setUserRole("rector");
     } else if (role == "student") {

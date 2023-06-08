@@ -27,6 +27,7 @@ export default function Home(props) {
   const getElectionDetails = async () => {
     try {
       const response = await axios.get(`http://localhost:8080/electionDate`);
+      console.log(response.data);
       if (response.data) {
         setElectionStartDate(response.data.startDate);
         setElectionEndDate(response.data.endDate);

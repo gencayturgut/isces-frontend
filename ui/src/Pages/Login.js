@@ -22,59 +22,56 @@ const Login = () => {
     const email = enteredEmail.trim();
     const password = enteredPassword.trim();
     try {
-      const activationURL = `http://localhost:8080/login/${email}/${password}`;
-      const res = await axios.get(activationURL);
-
-      if (res.status === 200) {
-        let returned = res.data;
-        if (returned.role === "candidate") {
-          returned = returned.candidate;
-        }
-        if (returned.role === "officer") {
-          returned = returned.admin;
-          const userDepartment = returned.department.departmentId;
-          authCtx.setUserDepartmentData(userDepartment);
-          localStorage.setItem("userDepartment", userDepartment);
-        }
-        if (res.data.role === "student" || res.data.role === "candidate") {
-          localStorage.setItem("uid", returned.student.studentNumber);
-          const userDepartment = returned.student.department.departmentId;
-          authCtx.setUserDepartmentData(userDepartment);
-          localStorage.setItem("userDepartment", userDepartment);
-          const userGpa = returned.student.grade;
-          authCtx.setUserGpaData(userGpa);
-          localStorage.setItem("userGpa", userGpa);
-          const userTerm = returned.student.term;
-          authCtx.setUserTermData(userTerm);
-          localStorage.setItem("userTerm", userTerm);
-          const userName = returned.student.firstName;
-          authCtx.setUserNameData(userName);
-          const userLastName = returned.student.lastName;
-          authCtx.setUserLastNameData(userLastName);
-          localStorage.setItem("userName", userName);
-          localStorage.setItem("userLastName", userLastName);
-          const isVoted = returned.student.voted;
-          if (isVoted === 0) {
-            authCtx.setIsVotedData(true);
-          }
-        }
-        const userRole = res.data.role;
-        authCtx.setUserData(userRole);
-        localStorage.setItem("userRole", userRole);
-        authCtx.onLogin();
-      }
+      const activationURL = `https://iztechelection.herokuapp.com/login/${email}/${password}`;
+      const res = await axios.get(activationURL)
+        .then((response) => {
+          console.log(response.data);
+            let returned = response.data;
+            if (returned.role === "candidate") {
+              returned = returned.candidate;
+            }
+            if (returned.role === "officer") {
+              returned = returned.admin;
+              const userDepartment = returned.department.departmentId;
+              authCtx.setUserDepartmentData(userDepartment);
+              localStorage.setItem("userDepartment", userDepartment);
+            }
+            if (response.data.role === "student" || response.data.role === "candidate") {
+              localStorage.setItem("uid", returned.student.studentNumber);
+              const userDepartment = returned.student.department.departmentId;
+              authCtx.setUserDepartmentData(userDepartment);
+              localStorage.setItem("userDepartment", userDepartment);
+              const userGpa = returned.student.grade;
+              authCtx.setUserGpaData(userGpa);
+              localStorage.setItem("userGpa", userGpa);
+              const userTerm = returned.student.term;
+              authCtx.setUserTermData(userTerm);
+              localStorage.setItem("userTerm", userTerm);
+              const userName = returned.student.firstName;
+              authCtx.setUserNameData(userName);
+              const userLastName = returned.student.lastName;
+              authCtx.setUserLastNameData(userLastName);
+              localStorage.setItem("userName", userName);
+              localStorage.setItem("userLastName", userLastName);
+              const isVoted = returned.student.voted;
+              if (isVoted === 0) {
+                authCtx.setIsVotedData(true);
+              }
+            }
+            const userRole = response.data.role;
+            authCtx.setUserData(userRole);
+            localStorage.setItem("userRole", userRole);
+            authCtx.onLogin();
+      
+        });
+  
+      console.log(res);
     } catch (err) {
       console.log(err.message);
-
       changeAlertBoxVisible();
     }
-
-    /*Backendden rol bilgisi gelecek, şu anlık test yaparken userRole'ü istediğin rolü yazarak deneyebilirsin.
-    Ana roller: student, rector, dean's office, department office. Department office dökümanları kontrol edip
-    eğer uygunsa dean's office e yollayacak. Deans office de onaylayacak, yani 2 tane onaylama aşaması olacak.
-    Rektör ise election date'i set edecek veya seçimi eşitlikle biterse rastgele bitirme tuşuna tıklayacak ve seçim
-    iki eşit oy alan iki kişi arasından biri seçilerek bitecek.*/
   };
+  
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
