@@ -8,6 +8,7 @@ export default function CandidateForm() {
   const [criminalRecord, setCriminalRecord] = useState();
   const [validCandidate, setValidCandidate] = useState(false);
   const [alertBoxContent, setAlertBoxContent] = useState("");
+  const [isCandidacyOn, setIsCandidacyOn] = useState(false);
 
   const authCtx = useContext(AuthContext);
 
