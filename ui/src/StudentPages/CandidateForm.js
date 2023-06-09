@@ -23,19 +23,10 @@ export default function CandidateForm() {
       console.error(error);
     }
   }
-  async function apply(stNum, transcript, criminal) {
+  async function apply(stNum) {
     try {
-      const formData = new FormData();
-      formData.append("transcript", transcript);
-      formData.append("criminal", criminal);
-      await axios.post(
+      await axios.get(
         `https://iztechelection.herokuapp.com/applyToBeCandidate/${stNum}`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
       );
       setIsApplied(true)
     } catch (error) {
