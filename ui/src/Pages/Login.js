@@ -133,7 +133,7 @@ const Login = () => {
                 </form>
               )}
               <a
-                href="https://obs.iyte.edu.tr/oibs/ogrenci/start.aspx?gkm=0020333453884031102355703550534436311053657033351388803446832232389283558535545383682197311153778435600"
+                href="https://mail-app.iyte.edu.tr/ForgotMyPassword/?AspxAutoDetectCookieSupport=1"
                 className="forgot-password-link"
               >
                 Forgot Password
