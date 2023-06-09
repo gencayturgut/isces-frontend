@@ -78,7 +78,6 @@ const SetElectionDate = () => {
       startDateConverted = startDateConverted.toISOString().substring(0, 19);
       endDateConverted = endDateConverted.toISOString().substring(0, 19);
       electionFetch(startDateConverted, endDateConverted);
-      window.location.reload();
     } else {
       changeAlertBoxVisible();
     }
