@@ -3,7 +3,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import "./SetElectionDate.css";
-import dayjs from "dayjs";
 
 const SetElectionDate = () => {
   const [enteredStartDate, setEnteredStartDate] = useState(null);
@@ -34,7 +33,6 @@ const SetElectionDate = () => {
       <h1 className="alert-box-header">We are in election!</h1>
       <p>Start Date:{enteredStartDate}</p>
       <p>End Date: {enteredEndDate}</p>
-      <button onClick={finishElection}>Cancel Election</button>;
     </div>
   );
   function changeAlertBoxVisible() {
@@ -52,7 +50,8 @@ const SetElectionDate = () => {
   };
   async function electionFetch(startDate, endDate) {
     try {
-      const url = `https://iztechelection.herokuapp.com/enterElectionDate/${startDate}/${endDate}`;
+      const url = `https://iztechelection.herokuapp.com/${startDate}/${endDate}`;
+      console.log(startDate);
       const response = await axios.get(url);
     } catch (error) {
       console.log(error.message);
@@ -97,6 +96,8 @@ const SetElectionDate = () => {
               selected={enteredStartDate}
               onChange={(date) => handleDateTimeChange(date, "start")}
               dateFormat="yyyy-MM-dd HH:mm"
+
+              
               showTimeInput
               timeInputLabel="Time:"
               timeFormat="HH:mm"
@@ -129,8 +130,15 @@ const SetElectionDate = () => {
     </div>
   );
   useEffect(() => {
-    getElectionDetails();
+    const interval = setInterval(() => {
+      getElectionDetails();
+    }, 10);
+  
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
+  
   async function finishElection() {
     try {
       const response = await axios.get(`https://iztechelection.herokuapp.com/finishElection`);
@@ -145,7 +153,6 @@ const SetElectionDate = () => {
       const startDate = new Date(response.data.startDate);
       const endDate = new Date(response.data.endDate);
       const currentDate = new Date();
-      console.log(response);
       if (startDate > currentDate) {
         setIsElectionSettedNotStarted(true);
         setIsInElectionProcess(false);
@@ -163,6 +170,12 @@ const SetElectionDate = () => {
       } else {
         setIsElectionSettedNotStarted(false);
         setIsInElectionProcess(false);
+      }
+      console.log(startDate)
+      console.log(currentDate)
+      console.log(endDate)
+      if (startDate.getTime() == currentDate.getTime() || endDate.getTime() == currentDate.getTime()) {
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);

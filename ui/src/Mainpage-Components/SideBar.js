@@ -1,9 +1,35 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import { Link, Outlet } from "react-router-dom";
+import axios from "axios";
 import "./SideBar.css";
 const SideBar = () => {
+  const [isVisible, setIsVisible] = useState(false);
   const authCtx = useContext(AuthContext);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      getElectionDetails();
+    }, 10);
+  
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+  const getElectionDetails = async () => {
+    try {
+      const response = await axios.get(`https://iztechelection.herokuapp.com/electionDate`);
+      const startDate = new Date(response.data.startDate);
+      const currentDate = new Date();
+      console.log(response);
+      if (startDate > currentDate) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="page-layout-container">
       <div className="sidebar-container">
@@ -62,15 +88,15 @@ const SideBar = () => {
                 <button>Council</button>
               </div>
             </Link>
-            {(authCtx.userRole === "student" ||
-              authCtx.userRole === "candidate") && (
-              <Link className="option" to="/candidateform">
-                <div>
-                  <ion-icon name="document-attach-outline"></ion-icon>
-                  <button>Be candidate</button>
-                </div>
-              </Link>
-            )}
+            {(authCtx.userRole === "student" || authCtx.userRole === "candidate") &&
+  isVisible && (
+    <Link className="option" to="/candidateform">
+      <div>
+        <ion-icon name="document-attach-outline"></ion-icon>
+        <button>Be candidate</button>
+      </div>
+    </Link>
+)}
             <Link className="option" to="/profile">
               <div>
                 <ion-icon name="person-circle-outline"></ion-icon>
