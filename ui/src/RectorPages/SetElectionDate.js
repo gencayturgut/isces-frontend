@@ -130,11 +130,13 @@ const SetElectionDate = () => {
     </div>
   );
   useEffect(() => {
-   
+    const interval = setInterval(() => {
       getElectionDetails();
-
+    }, []);
   
-   
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
   
   async function finishElection() {
