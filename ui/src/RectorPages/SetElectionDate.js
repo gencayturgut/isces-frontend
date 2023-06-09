@@ -52,8 +52,8 @@ const SetElectionDate = () => {
   };
   async function electionFetch(startDate, endDate) {
     try {
-      let startDateInput = dayjs(startDate).format("YYYY-MM-DD HH:mm");
-      let endDateInput = dayjs(endDate).format("YYYY-MM-DD HH:mm");
+      let startDateInput = dayjs(startDate).format("YYYY-MM-DDTHH:mm");
+      let endDateInput = dayjs(endDate).format("YYYY-MM-DDTHH:mm");
       const url = `https://iztechelection.herokuapp.com/enterElectionDate/${startDateInput}/${endDateInput}`;
       console.log(startDateInput);
       console.log(endDateInput)
