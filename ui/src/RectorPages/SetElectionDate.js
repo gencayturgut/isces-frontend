@@ -55,7 +55,8 @@ const SetElectionDate = () => {
       let startDateInput = dayjs(startDate).format("YYYY-MM-DD HH:mm");
       let endDateInput = dayjs(endDate).format("YYYY-MM-DD HH:mm");
       const url = `https://iztechelection.herokuapp.com/enterElectionDate/${startDateInput}/${endDateInput}`;
-      console.log(startDate);
+      console.log(startDateInput);
+      console.log(endDateInput)
       const response = await axios.get(url);
     } catch (error) {
       console.log(error.message);
@@ -77,7 +78,7 @@ const SetElectionDate = () => {
       );
       let endDateConverted = new Date(
         enteredEndDate.getTime() + 3 * 60 * 60 * 1000
-      );
+      );  
       console.log("DATE E GİRİYOR")
       electionFetch(startDateConverted.toISOString(), endDateConverted.toISOString());
     } else {
