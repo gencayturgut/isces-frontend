@@ -28,7 +28,7 @@ export default function CandidateForm() {
       const formData = new FormData();
       formData.append("transcript", transcript);
       formData.append("criminal", criminal);
-      await axios.get(
+      await axios.post(
         `https://iztechelection.herokuapp.com/applyToBeCandidate/${stNum}`,
         formData,
         {
