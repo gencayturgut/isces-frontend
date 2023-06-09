@@ -50,7 +50,7 @@ const SetElectionDate = () => {
   };
   async function electionFetch(startDate, endDate) {
     try {
-      const url = `https://iztechelection.herokuapp.com/${startDate}/${endDate}`;
+      const url = `https://iztechelection.herokuapp.com/enterElectionDate/${startDate}/${endDate}`;
       console.log(startDate);
       const response = await axios.get(url);
     } catch (error) {
@@ -130,13 +130,10 @@ const SetElectionDate = () => {
     </div>
   );
   useEffect(() => {
-    const interval = setInterval(() => {
+
       getElectionDetails();
-    }, []);
   
-    return () => {
-      clearInterval(interval);
-    };
+   
   }, []);
   
   async function finishElection() {

@@ -7,13 +7,11 @@ const SideBar = () => {
   const [isVisible, setIsVisible] = useState(false);
   const authCtx = useContext(AuthContext);
   useEffect(() => {
-    const interval = setInterval(() => {
+
       getElectionDetails();
-    }, []);
+ 
   
-    return () => {
-      clearInterval(interval);
-    };
+   
   }, []);
   const getElectionDetails = async () => {
     try {
