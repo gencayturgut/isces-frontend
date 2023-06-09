@@ -132,7 +132,7 @@ const SetElectionDate = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       getElectionDetails();
-    }, 1000);
+    }, []);
   
     return () => {
       clearInterval(interval);

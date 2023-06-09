@@ -9,7 +9,7 @@ const SideBar = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       getElectionDetails();
-    }, 10);
+    }, []);
   
     return () => {
       clearInterval(interval);
