@@ -22,10 +22,14 @@ export default function Council() {
   return (
     <div className="council-container">
       <h1 className="our-council">OUR COUNCIL</h1>
+      <h2 className="member-title">Department Representatives</h2>
       {delegates.length > 0 ? (
-        <div>
+        <div className="delegate-container">
           {delegates.map((delegate) => (
-            <div key={delegate.delegateId}>
+            <div
+              key={delegate.delegateId}
+              className="council-member department-representative"
+            >
               <h2 className="member-title">Department Representatives</h2>
               <div className="council-member-photo"></div>
               <div className="council-member-info">
@@ -36,7 +40,9 @@ export default function Council() {
                 <div className="council-member-department">
                   {delegate.candidate.student.department.departmentName}
                 </div>
-                <div className="council-member-contact"></div>
+                <div className="council-member-contact">
+                  {delegate.candidate.student.user.email}
+                </div>
               </div>
             </div>
           ))}
