@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import "./SetElectionDate.css";
+import dayjs from "dayjs";
 
 const SetElectionDate = () => {
   const [enteredStartDate, setEnteredStartDate] = useState(null);
@@ -51,7 +52,9 @@ const SetElectionDate = () => {
   };
   async function electionFetch(startDate, endDate) {
     try {
-      const url = `https://iztechelection.herokuapp.com/enterElectionDate/${startDate}/${endDate}`;
+      let startDateInput = dayjs(startDate).format("YYYY-MM-DD HH:mm");
+      let endDateInput = dayjs(endDate).format("YYYY-MM-DD HH:mm");
+      const url = `https://iztechelection.herokuapp.com/enterElectionDate/${startDateInput}/${endDateInput}`;
       console.log(startDate);
       const response = await axios.get(url);
     } catch (error) {
@@ -66,7 +69,7 @@ const SetElectionDate = () => {
     }
     return false;
   }
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     if (isInputValid(enteredStartDate, enteredEndDate)) {
       let startDateConverted = new Date(
         enteredStartDate.getTime() + 3 * 60 * 60 * 1000
