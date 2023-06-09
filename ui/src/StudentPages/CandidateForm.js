@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import "./CandidateForm.css";
 import axios from "axios";
 import AuthContext from "../context/AuthContext";
@@ -10,6 +10,26 @@ export default function CandidateForm() {
   const [alertBoxContent, setAlertBoxContent] = useState("");
 
   const authCtx = useContext(AuthContext);
+
+  useEffect(() => {
+    checkCandidacyPeriod();
+  }, []);
+  const checkCandidacyPeriod = async () => {
+    try {
+      const response = await axios.get(
+        "http://localhost:8080/isInCandidacyProcess"
+      );
+
+      if (response.data) {
+        setIsCandidacyOn(true);
+      }
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  const reload = () => {
+    window.location.reload();
+  };
   // user id'im ile aday adayı olmadığım belli olacak. eğer ispending ise değiştir olacak. eğer kabulsem sayfada zaten adaysın yazacak.
   //const apply = async (candidateData) => {
   const apply = async () => {
@@ -28,9 +48,16 @@ export default function CandidateForm() {
           },
         }
       );*/
-      await axios.get(`https://iztechelection.herokuapp.com/applyToBeCandidate/${localStorage.getItem("uid")}`);
+      const res = await axios.get(
+        `https://iztechelection.herokuapp.com/applyToBeCandidate/${localStorage.getItem(
+          "uid"
+        )}`
+      );
+      if (res.status == 200) {
+        reload();
+      }
     } catch (error) {
-      console.error(error);
+      console.error(error.message);
     }
   };
 
@@ -55,38 +82,45 @@ export default function CandidateForm() {
   }
 
   return (
-    <div className="be-candidate-container">
-      <form className="be-candidate-form" onSubmit={submitHandler}>
-        <br />
-        <br />
-        <label className="transcript-record-label">
-          <span>Transcript of Records:</span>
-          <input
-            className="transcript-input"
-            type="file"
-            accept="application/pdf"
-            onChange={(e) => setTranscript(e.target.files[0])}
-          />
-        </label>
-        <br />
-        <label className="criminal-record-label">
-          <span>Criminal Record:</span>
-          <input
-            type="file"
-            accept="application/pdf"
-            onChange={(e) => setCriminalRecord(e.target.files[0])}
-          />
-        </label>
-        <br />
+    <div>
+      {isCandidacyOn ? (
+        authCtx.isApplied ? (
+          <h1>Your application has already been received.</h1>
+        ) : (
+          <div className="be-candidate-container">
+            <form className="be-candidate-form" onSubmit={submitHandler}>
+              <br />
+              <br />
+              <label className="transcript-record-label">
+                <span>Transcript of Records:</span>
+                <input
+                  className="transcript-input"
+                  type="file"
+                  accept="application/pdf"
+                  onChange={(e) => setTranscript(e.target.files[0])}
+                />
+              </label>
+              <br />
+              <label className="criminal-record-label">
+                <span>Criminal Record:</span>
+                <input
+                  type="file"
+                  accept="application/pdf"
+                  onChange={(e) => setCriminalRecord(e.target.files[0])}
+                />
+              </label>
+              <br />
 
-        <button className="be-candidate-button" type="submit">
-          Be Candidate
-        </button>
-      </form>
-      {validCandidate ? (
-        <div className="alertBox-box">{alertBoxContent}</div> // true
+              <button className="be-candidate-button" type="submit">
+                Be Candidate
+              </button>
+            </form>
+
+            <div className="alertBox-box">{alertBoxContent}</div>
+          </div>
+        )
       ) : (
-        <div className="alertBox-box">{alertBoxContent}</div> // false
+        <h1>New candidacy period has not started yet!</h1>
       )}
     </div>
   );

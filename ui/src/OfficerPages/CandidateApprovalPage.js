@@ -9,13 +9,12 @@ const CandidateApprovalPage = () => {
   const [isElectionOn, setIsElectionOn] = useState(false);
   const [isCandidacyOn, setIsCandidacyOn] = useState(false);
   const url = `https://iztechelection.herokuapp.com/unevaluatedStudents/${authCtx.userDepartment}`;
-  let returned = <h1>Candidacy period has ended!</h1>;
+  let returned = <h1>Candidacy period has not started!</h1>;
 
   useEffect(() => {
     checkElectionIsOn();
     checkCandidacyPeriod();
     fetchCandidateInfo();
-
   }, []);
 
   const checkElectionIsOn = async () => {
@@ -24,7 +23,6 @@ const CandidateApprovalPage = () => {
         `https://iztechelection.herokuapp.com/isInElectionProcess`
       );
 
-
       if (response.data) {
         setIsElectionOn(true);
       }
@@ -32,13 +30,12 @@ const CandidateApprovalPage = () => {
       console.log(error.message);
     }
   };
-  
+
   const checkCandidacyPeriod = async () => {
     try {
       const response = await axios.get(
         `https://iztechelection.herokuapp.com/isInCandidacyProcess`
       );
-
 
       if (response.data) {
         setIsCandidacyOn(true);
@@ -47,7 +44,7 @@ const CandidateApprovalPage = () => {
       console.log(error.message);
     }
   };
-  
+
   const fetchCandidateInfo = async () => {
     try {
       const response = await axios.get(url);
@@ -84,29 +81,27 @@ const CandidateApprovalPage = () => {
     const urlForUpdate = `https://iztechelection.herokuapp.com/rejectStudent/${studentNumber}`;
     updateCandidates(urlForUpdate);
   };
-  
+
   const downloadCandidateFiles = async (studentNumber) => {
     try {
       const response = await axios.get(
         `https://iztechelection.herokuapp.com/downloadStudentFiles/${studentNumber}`,
         {
-          responseType: 'blob' // Set the response type to 'blob'
+          responseType: "blob", // Set the response type to 'blob'
         }
       );
 
       const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
+      const link = document.createElement("a");
       link.href = url;
-      link.setAttribute('download', `student_files_${studentNumber}.zip`);
+      link.setAttribute("download", `student_files_${studentNumber}.zip`);
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
     } catch (error) {
-      console.error('Error downloading student files:', error);
+      console.error("Error downloading student files:", error);
     }
   };
-
-
 
   return (
     <>
@@ -133,7 +128,9 @@ const CandidateApprovalPage = () => {
                       Reject
                     </button>
                     <button
-                      onClick={() => downloadCandidateFiles(candidate.studentNumber)}
+                      onClick={() =>
+                        downloadCandidateFiles(candidate.studentNumber)
+                      }
                     >
                       Download Files
                     </button>

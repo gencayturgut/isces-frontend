@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 const AuthContext = React.createContext({
-  isVoted:false,
+  isVoted: false,
+  isApplied: false,
   isLoggedIn: false,
   userRole: null,
   userDepartment: null,
   userGpa: null,
   userName: null,
   userLastName: null,
-  userTerm : null,
+  userTerm: null,
   onLogin: () => {},
   exitHandler: () => {},
   setUserData: () => {},
@@ -16,7 +17,8 @@ const AuthContext = React.createContext({
   setUserNameData: () => {},
   setUserLastNameData: () => {},
   setIsVotedData: () => {},
-  setUserTermData: () => {}
+  setIsAppliedData: () => {},
+  setUserTermData: () => {},
 });
 
 export const AuthContextProvider = (props) => {
@@ -28,6 +30,7 @@ export const AuthContextProvider = (props) => {
     const storedUserName = localStorage.getItem("userName");
     const storedUserLastName = localStorage.getItem("userLastName");
     const storedIsVoted = localStorage.getItem("isVoted");
+    const storedIsApplied = localStorage.getItem("isApplied");
     const storedUserTerm = localStorage.getItem("userTerm");
     if (storedIsVoted === 0) {
       setIsVoted(true);
@@ -40,6 +43,7 @@ export const AuthContextProvider = (props) => {
       setUserRole(storedUserRole);
       setUserDepartment(storedUserDepartment);
       setIsVoted(storedIsVoted);
+      setIsApplied(storedIsApplied);
       setUserTerm(storedUserTerm);
     }
   }, []);
@@ -51,9 +55,10 @@ export const AuthContextProvider = (props) => {
   const [userLastName, setUserLastName] = useState(null);
   const [isVoted, setIsVoted] = useState(false);
   const [userTerm, setUserTerm] = useState(null);
+  const [isApplied, setIsApplied] = useState(false);
   const loginHandler = () => {
     localStorage.setItem("isLoggedIn", "1");
-    
+
     const role = localStorage.getItem("userRole");
     if (role == "rector") {
       setUserRole("rector");
@@ -73,6 +78,7 @@ export const AuthContextProvider = (props) => {
     localStorage.removeItem("userName");
     localStorage.removeItem("isVoted");
     localStorage.removeItem("userTerm");
+    localStorage.removeItem("isApplied");
     setUserRole(null);
     setUserDepartment(null);
     setUserGpa(null);
@@ -80,6 +86,7 @@ export const AuthContextProvider = (props) => {
     setUserLastName(null);
     setUserTerm(null);
     setIsLoggedIn(false);
+    setIsApplied(false);
   };
 
   const setUserData = (role) => {
@@ -91,6 +98,9 @@ export const AuthContextProvider = (props) => {
   };
   const setUserTermData = (term) => {
     setUserTerm(term);
+  };
+  const setIsAppliedData = () => {
+    setIsApplied(true);
   };
 
   const setUserGpaData = (gpa) => {
@@ -107,11 +117,11 @@ export const AuthContextProvider = (props) => {
     setUserLastName(lastName);
   };
 
-
   return (
     <AuthContext.Provider
       value={{
         isVoted: isVoted,
+        isApplied: isApplied,
         userTerm: userTerm,
         isLoggedIn: isLoggedIn,
         userRole: userRole,
@@ -121,6 +131,7 @@ export const AuthContextProvider = (props) => {
         userLastName: userLastName,
         setUserLastNameData: setUserLastNameData,
         setUserData: setUserData,
+        setIsAppliedData: setIsApplied,
         setUserDepartmentData: setUserDepartmentData,
         setUserGpaData: setUserGpaData,
         setUserNameData: setUserNameData,

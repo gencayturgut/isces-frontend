@@ -41,6 +41,9 @@ const Login = () => {
           const userDepartment = returned.student.department.departmentId;
           authCtx.setUserDepartmentData(userDepartment);
           localStorage.setItem("userDepartment", userDepartment);
+          const isApplied = returned.student.isAppliedForCandidacy;
+          authCtx.setIsAppliedData(isApplied);
+          localStorage.setItem("isApplied", isApplied);
           const userGpa = returned.student.grade;
           authCtx.setUserGpaData(userGpa);
           localStorage.setItem("userGpa", userGpa);
