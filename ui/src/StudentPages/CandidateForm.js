@@ -28,8 +28,8 @@ export default function CandidateForm() {
       const formData = new FormData();
       formData.append("transcript", transcript);
       formData.append("criminal", criminal);
-      await axios.post(
-        `https://iztechelection.herokuapp.com/uploadDocument/${stNum}`,
+      await axios.get(
+        `https://iztechelection.herokuapp.com/applyToBeCandidate/${stNum}`,
         formData,
         {
           headers: {
@@ -37,9 +37,6 @@ export default function CandidateForm() {
           },
         }
       );
-      await axios.get(
-        `https://iztechelection.herokuapp.com/applyToBeCandidate/${stNum}`
-      )
       setIsApplied(true)
     } catch (error) {
       console.error(error);
