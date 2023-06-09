@@ -1,19 +1,22 @@
-import { useContext, useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./CandidateForm.css";
 import axios from "axios";
 import AuthContext from "../context/AuthContext";
+
 export default function CandidateForm() {
   const studentNum = localStorage.getItem("uid");
   const [transcript, setTranscript] = useState("");
-  const [criminalRecord, setCriminalRecord] = useState();
+  const [criminalRecord, setCriminalRecord] = useState("");
   const [validCandidate, setValidCandidate] = useState(false);
   const [alertBoxContent, setAlertBoxContent] = useState("");
   const [isCandidacyOn, setIsCandidacyOn] = useState(false);
+
   const authCtx = useContext(AuthContext);
 
   useEffect(() => {
     checkCandidacyPeriod();
   }, []);
+
   const checkCandidacyPeriod = async () => {
     try {
       const response = await axios.get(
@@ -28,29 +31,14 @@ export default function CandidateForm() {
     }
   };
 
-  // user id'im ile aday adayı olmadığım belli olacak. eğer ispending ise değiştir olacak. eğer kabulsem sayfada zaten adaysın yazacak.
-  //const apply = async (candidateData) => {
   const apply = async () => {
     try {
-      /*const formData = new FormData();
-      formData.append("studentNum", candidateData.studentNum);
-      formData.append("transcript", candidateData.transcript);
-      formData.append("criminalRecord", candidateData.criminalRecord);*/
-
-      /*const response = await axios.post(
-        `https://iztechelection.herokuapp.com/uploadFolder`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );*/
       const res = await axios.get(
         `https://iztechelection.herokuapp.com/applyToBeCandidate/${localStorage.getItem(
           "uid"
         )}`
       );
+      console.log(res.status == 200);
     } catch (error) {
       console.error(error.message);
     }
@@ -58,13 +46,8 @@ export default function CandidateForm() {
 
   function submitHandler(e) {
     e.preventDefault();
-    /* if (transcript && criminalRecord) {
-      const candidateData = {
-        studentNum,
-        transcript,
-        criminalRecord,
-      };
-     // apply(candidateData);
+    if (transcript && criminalRecord) {
+      // Perform form submission or axios.post here if needed
       setTranscript("");
       setCriminalRecord("");
       setValidCandidate(true);
@@ -73,7 +56,7 @@ export default function CandidateForm() {
       setValidCandidate(false);
       setAlertBoxContent("Lütfen tüm bilgileri doldurun.");
     }
-   */ apply();
+    apply();
   }
 
   return (

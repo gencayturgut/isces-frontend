@@ -4,7 +4,7 @@ import axios from "axios";
 
 export default function Candidates() {
   const authCtx = useContext(AuthContext);
-  
+
   const [candidates, setCandidates] = useState([]);
   const [showAlertBox, setShowAlertBox] = useState(false);
   const [isVoted, setIsVoted] = useState(false);
@@ -37,16 +37,14 @@ export default function Candidates() {
   };
 
   useEffect(() => {
-      checkElectionIsOn();
-      fetchCandidateInfo();
-      fetchUserInfo();
-
+    checkElectionIsOn();
+    fetchCandidateInfo();
+    fetchUserInfo();
   }, []);
 
   const fetchCandidateInfo = async () => {
     try {
       const response = await axios.get(url);
-
 
       setCandidates(response.data);
     } catch (error) {
@@ -101,12 +99,13 @@ export default function Candidates() {
                 Candidate Name: {candidate.student.firstName}
                 <br />
                 {/* Diğer bilgileri buraya ekleyebilirsiniz */}
-                {((authCtx.userRole === "student" ||
-                  authCtx.userRole === "candidate") && electionIsOn) && (
-                  <button onClick={() => alertBoxHandler(candidate)}>
-                    Vote
-                  </button>
-                )}
+                {(authCtx.userRole === "student" ||
+                  authCtx.userRole === "candidate") &&
+                  electionIsOn && (
+                    <button onClick={() => alertBoxHandler(candidate)}>
+                      Vote
+                    </button>
+                  )}
               </li>
             );
 
@@ -127,8 +126,9 @@ export default function Candidates() {
                         Candidate Name: {candidate.student.firstName}
                         <br />
                         {/* Diğer bilgileri buraya ekleyebilirsiniz */}
-                        {((authCtx.userRole === "student" ||
-                          authCtx.userRole === "candidate") && electionIsOn) && (
+                        {(authCtx.userRole === "student" ||
+                          authCtx.userRole === "candidate") &&
+                          electionIsOn && (
                             <button onClick={() => alertBoxHandler(candidate)}>
                               Vote
                             </button>
@@ -183,13 +183,12 @@ export default function Candidates() {
     </div>
   );
 
-
   return (
     <div>
       {!electionIsOn && electionNotStartBox}
       {showSentVoteInfo && votedInfo}
       {showAlertBox && !showSentVoteInfo && alertBox}
-      {!isVoted  && !showAlertBox && voteForm}
+      {!isVoted && !showAlertBox && voteForm}
       {isVoted && afterVoteScreen}
     </div>
   );
