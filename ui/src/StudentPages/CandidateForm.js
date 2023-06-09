@@ -46,16 +46,16 @@ export default function CandidateForm() {
 
   function submitHandler(e) {
     e.preventDefault();
-    if (transcript && criminalRecord) {
-      // Perform form submission or axios.post here if needed
-      setTranscript("");
-      setCriminalRecord("");
-      setValidCandidate(true);
-      setAlertBoxContent("Başvurunuz başarıyla alınmıştır.");
-    } else {
-      setValidCandidate(false);
-      setAlertBoxContent("Lütfen tüm bilgileri doldurun.");
-    }
+    // if (transcript && criminalRecord) {
+    //   // Perform form submission or axios.post here if needed
+    //   setTranscript("");
+    //   setCriminalRecord("");
+    //   setValidCandidate(true);
+    //   setAlertBoxContent("Başvurunuz başarıyla alınmıştır.");
+    // } else {
+    //   setValidCandidate(false);
+    //   setAlertBoxContent("Lütfen tüm bilgileri doldurun.");
+    // }
     apply();
   }
 
