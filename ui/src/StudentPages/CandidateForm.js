@@ -9,7 +9,6 @@ export default function CandidateForm() {
   const [validCandidate, setValidCandidate] = useState(false);
   const [alertBoxContent, setAlertBoxContent] = useState("");
   const [isCandidacyOn, setIsCandidacyOn] = useState(false);
-
   const authCtx = useContext(AuthContext);
 
   useEffect(() => {
@@ -18,7 +17,7 @@ export default function CandidateForm() {
   const checkCandidacyPeriod = async () => {
     try {
       const response = await axios.get(
-        "http://localhost:8080/isInCandidacyProcess"
+        "https://iztechelection.herokuapp.com/isInCandidacyProcess"
       );
 
       if (response.data) {
