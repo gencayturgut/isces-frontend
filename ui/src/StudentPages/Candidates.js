@@ -120,12 +120,11 @@ export default function Candidates() {
               <strong>Department: {departmentNames[departmentId - 1]}</strong>
               <ul>
                 {candidates.map((candidate, index) => {
-                  if (candidate.student.departmentId === departmentId) {
+                  if (candidate.student.department.departmentId  === departmentId) {
                     return (
                       <li key={index}>
-                        Candidate Name: {candidate.student.firstName}
+                        Candidate Name:  {candidate.student.firstName} {candidate.student.lastName}
                         <br />
-                        {/* Diğer bilgileri buraya ekleyebilirsiniz */}
                         {(authCtx.userRole === "student" ||
                           authCtx.userRole === "candidate") &&
                           electionIsOn && (
