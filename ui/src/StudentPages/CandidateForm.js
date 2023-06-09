@@ -60,7 +60,7 @@ export default function CandidateForm() {
         <span>Transcript of Records:</span>
         <input
           className="transcript-input"
-          type="MultiPartFile"
+          type="file"
           accept="application/pdf"
           onChange={(e) => setTranscript(e.target.files[0])}
         />
@@ -69,7 +69,7 @@ export default function CandidateForm() {
       <label className="criminal-record-label">
         <span>Criminal Record:</span>
         <input
-          type="MultiPartFile"
+          type="file"
           accept="application/pdf"
           onChange={(e) => setCriminalRecord(e.target.files[0])}
         />
