@@ -27,9 +27,7 @@ export default function CandidateForm() {
       console.log(error.message);
     }
   };
-  const reload = () => {
-    window.location.reload();
-  };
+
   // user id'im ile aday adayı olmadığım belli olacak. eğer ispending ise değiştir olacak. eğer kabulsem sayfada zaten adaysın yazacak.
   //const apply = async (candidateData) => {
   const apply = async () => {
@@ -53,9 +51,6 @@ export default function CandidateForm() {
           "uid"
         )}`
       );
-      if (res.status == 200) {
-        reload();
-      }
     } catch (error) {
       console.error(error.message);
     }
