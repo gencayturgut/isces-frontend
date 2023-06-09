@@ -70,6 +70,7 @@ const SetElectionDate = () => {
     return false;
   }
   const handleSubmit = (e) => {
+    e.preventDefault();
     if (isInputValid(enteredStartDate, enteredEndDate)) {
       let startDateConverted = new Date(
         enteredStartDate.getTime() + 3 * 60 * 60 * 1000
