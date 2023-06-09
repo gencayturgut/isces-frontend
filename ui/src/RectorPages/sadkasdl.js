@@ -170,9 +170,6 @@ const SetElectionDate = () => {
         setIsElectionSettedNotStarted(false);
         setIsInElectionProcess(false);
       }
-      console.log(startDate)
-      console.log(currentDate)
-      console.log(endDate)
       if (startDate.getTime() == currentDate.getTime() || endDate.getTime() == currentDate.getTime()) {
         window.location.reload();
       }

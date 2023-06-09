@@ -68,13 +68,8 @@ const SetElectionDate = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isInputValid(enteredStartDate, enteredEndDate)) {
-      let startDateConverted = new Date(
-        enteredStartDate.getTime() + 3 * 60 * 60 * 1000
-      );
-      let endDateConverted = new Date(
-        enteredEndDate.getTime() + 3 * 60 * 60 * 1000
-      );  
-      console.log("DATE E GİRİYOR")
+      let startDateConverted = new Date(enteredStartDate);
+      let endDateConverted = new Date(enteredEndDate);
       startDateConverted = startDateConverted.toISOString().substring(0, 19);
       endDateConverted = endDateConverted.toISOString().substring(0, 19);
       electionFetch(startDateConverted, endDateConverted);
@@ -96,8 +91,6 @@ const SetElectionDate = () => {
               selected={enteredStartDate}
               onChange={(date) => handleDateTimeChange(date, "start")}
               dateFormat="yyyy-MM-dd HH:mm"
-
-              
               showTimeInput
               timeInputLabel="Time:"
               timeFormat="HH:mm"
@@ -130,15 +123,14 @@ const SetElectionDate = () => {
     </div>
   );
   useEffect(() => {
-
-      getElectionDetails();
-  
-   
+    getElectionDetails();
   }, []);
-  
+
   async function finishElection() {
     try {
-      const response = await axios.get(`https://iztechelection.herokuapp.com/finishElection`);
+      const response = await axios.get(
+        `https://iztechelection.herokuapp.com/finishElection`
+      );
       window.location.reload();
     } catch (error) {
       console.log(error);
@@ -146,7 +138,9 @@ const SetElectionDate = () => {
   }
   const getElectionDetails = async () => {
     try {
-      const response = await axios.get(`https://iztechelection.herokuapp.com/electionDate`);
+      const response = await axios.get(
+        `https://iztechelection.herokuapp.com/electionDate`
+      );
       const startDate = new Date(response.data.startDate);
       const endDate = new Date(response.data.endDate);
       const currentDate = new Date();
@@ -168,10 +162,10 @@ const SetElectionDate = () => {
         setIsElectionSettedNotStarted(false);
         setIsInElectionProcess(false);
       }
-      console.log(startDate)
-      console.log(currentDate)
-      console.log(endDate)
-      if (startDate.getTime() == currentDate.getTime() || endDate.getTime() == currentDate.getTime()) {
+      if (
+        startDate.getTime() == currentDate.getTime() ||
+        endDate.getTime() == currentDate.getTime()
+      ) {
         window.location.reload();
       }
     } catch (error) {

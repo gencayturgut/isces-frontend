@@ -16,7 +16,6 @@ const CandidateApprovalPage = () => {
       const res = await axios.get(
         `https://iztechelection.herokuapp.com/downloadDocument/${stNum}`
       )
-      console.log(res);
     }
     catch (error) {
       console.error(error);

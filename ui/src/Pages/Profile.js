@@ -3,7 +3,6 @@ import AuthContext from "../context/AuthContext";
 import "./Profile.css";
 const Profile = () => {
   const authCtx = useContext(AuthContext);
-  console.log(authCtx);
   const departmentNameHandler = (id) => {
     if (id == 1) {
       return "Electrical Engineering";

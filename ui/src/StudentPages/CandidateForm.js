@@ -16,7 +16,6 @@ export default function CandidateForm() {
       const res = await axios.get(
         `https://iztechelection.herokuapp.com/getStudent/${stNum}`
       )
-      console.log(res)
       setIsApplied(res.data.isAppliedForCandidacy)
     }
     catch (error) {

@@ -18,7 +18,6 @@ const SideBar = () => {
       const response = await axios.get(`https://iztechelection.herokuapp.com/electionDate`);
       const startDate = new Date(response.data.startDate);
       const currentDate = new Date();
-      console.log(response);
       if (startDate > currentDate) {
         setIsVisible(true);
       } else {
