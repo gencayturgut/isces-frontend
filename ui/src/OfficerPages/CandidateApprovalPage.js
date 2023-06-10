@@ -9,6 +9,7 @@ const CandidateApprovalPage = () => {
   const [isElectionOn, setIsElectionOn] = useState(false);
   const [isCandidacyOn, setIsCandidacyOn] = useState(false);
   const url = `https://iztechelection.herokuapp.com/unevaluatedStudents/${authCtx.userDepartment}`;
+
   let returned = <h1>Candidacy period has ended!</h1>;
 
   useEffect(() => {
