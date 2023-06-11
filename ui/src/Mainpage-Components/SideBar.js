@@ -6,6 +6,8 @@ import "./SideBar.css";
 const SideBar = () => {
   const [isVisible, setIsVisible] = useState(false);
   const authCtx = useContext(AuthContext);
+
+  
   useEffect(() => {
 
       getElectionDetails();
