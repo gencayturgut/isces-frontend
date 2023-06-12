@@ -1,6 +1,8 @@
 import React from "react";
 
 const CandidateCard = (props) => {
+
+  
   return (
     <div className="container">
       <div className="card">
