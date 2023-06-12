@@ -5,7 +5,11 @@ const CandidateCard = (props) => {
 
 
 
+
+
+
   
+
 
   return (
     <div className="container">
