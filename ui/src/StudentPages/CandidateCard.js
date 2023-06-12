@@ -3,6 +3,8 @@ import React from "react";
 const CandidateCard = (props) => {
 
 
+
+
   
 
   return (
